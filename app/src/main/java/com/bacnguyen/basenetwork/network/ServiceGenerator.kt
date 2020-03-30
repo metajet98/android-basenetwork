@@ -1,21 +1,17 @@
 package com.bacnguyen.basenetwork.network
 
-import com.bacnguyen.basenetwork.auth.AuthClient
 import com.bacnguyen.basenetwork.network.interceptor.AuthInterceptor
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
-class ServiceGenerator @Inject constructor(
-    private var authClient: AuthClient
-) {
+class ServiceGenerator {
     private lateinit var builder: Retrofit.Builder
 
     private val okHttpClient by lazy {
-        OkHttpClient.Builder().addInterceptor(AuthInterceptor(authClient))
+        OkHttpClient.Builder().addInterceptor(AuthInterceptor())
     }
 
     private fun createBuilder(baseUrl: String): Retrofit.Builder {
