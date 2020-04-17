@@ -1,5 +1,7 @@
 package com.bacnguyen.basenetwork.models
 
-open class BaseModel {
+import java.io.Serializable
+
+open class BaseModel : Serializable {
 
 }

@@ -3,7 +3,6 @@ package com.bacnguyen.basenetwork.network.interceptor
 import com.bacnguyen.basenetwork.auth.AuthClient
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
 
 class AuthInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {

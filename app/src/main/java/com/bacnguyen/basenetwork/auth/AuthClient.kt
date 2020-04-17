@@ -8,4 +8,8 @@ object AuthClient {
     fun refreshToken() {
 
     }
+
+    fun navigatorLogin() {
+
+    }
 }

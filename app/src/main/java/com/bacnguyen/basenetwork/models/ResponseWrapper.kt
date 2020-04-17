@@ -1,4 +1,4 @@
-package com.bacnguyen.basenetwork.network
+package com.bacnguyen.basenetwork.models
 
 import com.google.gson.annotations.SerializedName
 

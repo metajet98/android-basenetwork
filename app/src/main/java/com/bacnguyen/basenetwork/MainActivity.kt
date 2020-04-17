@@ -3,14 +3,8 @@ package com.bacnguyen.basenetwork
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.bacnguyen.basenetwork.models.SomeModel
-import com.bacnguyen.basenetwork.network.ResponseWrapper
 import com.bacnguyen.basenetwork.network.ServiceManager
-import com.bacnguyen.basenetwork.network.interceptor.CustomTransformer
-import com.bacnguyen.basenetwork.network.services.SomeService
 import com.bacnguyen.basenetwork.network.useCustomTransform
-import io.reactivex.Observable
-import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +14,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     @Inject lateinit var serviceManager: ServiceManager
-    @Inject lateinit var someService: SomeService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +21,23 @@ class MainActivity : AppCompatActivity() {
         (application as MyApplication).appComponent.inject(this)
 
         Log.d(TAG, serviceManager.toString())
-        Log.d(TAG, someService.toString())
+        Log.d(TAG, serviceManager.getSomeService().toString())
 
-        someService.getSomeData()
+//        serviceManager.getSomeService().getSomeData()
+//            .useCustomTransform()
+//            .subscribe ({
+//                Log.d("MainActivity----", "onNext ${it.toString()}")
+//            }, {
+//                Log.d("MainActivity----", "onError ${it.toString()}")
+//            })
+
+        serviceManager.getSomeService().getSomeSingleData()
             .useCustomTransform()
-            .subscribe {
+            .subscribe ({
+                Log.d("MainActivity----", "onNext ${it.toString()}")
+            }, {
+                Log.d("MainActivity----", "onError ${it.toString()}")
+            })
 
-            }
     }
 }
